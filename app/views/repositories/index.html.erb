@@ -1,7 +1,23 @@
 <div class = "container">
-  <h1>Repos</h1>
+<%# binding.pry %>
+<% if @repos[0].has_key?('owner') %>
+  <% name = @repos[0]['owner']['login'] %>
+<% else %>
+  <% name = 'your_username' %>
+<% end %>
+  <h1>Repos of <%= name %></h1>
   <!-- List repositories and display username here! -->
+<%# binding.pry %>
+<% @repos.each do |repo|  %>
+  <%= repo['name'] %>
+<% end %>
 
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
   <%= form_tag("/repositories/create", method: "post") do %>
     <%= label_tag(:name, "Create a New Repo:") %>
     <%= text_field_tag(:name, nil, id: "new-repo") %>
